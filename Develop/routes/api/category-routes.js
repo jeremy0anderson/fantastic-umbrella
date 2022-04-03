@@ -60,11 +60,11 @@ router.put('/:id', (req, res) => {
                 },
           })
           .then((categoryData) => {
-                if (!categoryData) {
+                if (!categoryData[0]) {
                       res.status(404).json({ message: 'No category found with this id' });
                       return;
                 }
-                res.json(categoryData);
+                res.json(categoryData[0]);
           })
           .catch((err) => {
                 console.log(err);
