@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   // find all tags
   // be sure to include its associated Product data
       Tag.findAll({
-           include: [Product]
+           include: Product
           }).then(tagData =>{
                 if (!tagData){
                       res.status(404).json({message: "No tags found"})
@@ -22,7 +22,7 @@ router.get('/:id', (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
       Tag.findOne({
-            include: [Product],
+            include: Product,
             where:{
                   id: req.params.id
             }
