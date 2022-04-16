@@ -58,10 +58,17 @@ router.put('/:id', (req, res) => {
             },
             returning: true
       }).then((tagData)=>{
-            if (!tagData){
-                  res.status(404).json({message: "Update Unsuccessful. No tag found with that id"})
+            if (!tagData[1]){
+                  return res.status(404).json({message: "Update Unsuccessful. No tag found with that id"})
+            } else if (tagData[1] === 0){
+                 return res.status(200).json({message: "no data was changed"});
+
+            } else if (tagData[1] === 1){
+                  return res.status(200).json({message: req.body.tag_name + ` ${req.params.id} was updated` })
             }
-            res.status(200).json(tagData[0]);
+            console.log(id, tagData);
+            let idN = req.params.id;
+
       }).catch((err)=>{
             res.status(400).json(err);
       })

@@ -122,7 +122,7 @@ router.delete('/:id', (req, res) => {
     if (!tagData){
       res.status(404).json({message: "Could not delete. No product with that id found."})
     }
-    res.status(200).json({message: "Product was successfully deleted"})
+    res.status(200).json({message: `Product ${req.params.id} was successfully deleted`})
 
   }).catch((err)=>{
     res.status(400).json(err);
